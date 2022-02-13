@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/02/13 11:53:31 by jkauppi           #+#    #+#              #
+#    Updated: 2022/02/13 11:53:40 by jkauppi          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME			=	make_example
 
 H_FOLDER		=	includes
@@ -20,12 +32,12 @@ all: $(NAME)
 
 $(NAME): pre_requisites $(OBJ_PATHS) Makefile
 	clang $(C_FLAGS) -I $(H_FOLDER) -o $@ $(OBJ_PATHS)
+	@touch pre_requisites
 
 $(OBJ_PATHS): $(OBJ_FOLDER)/%.o:$(C_FOLDER)/%.c $(H_PATHS) Makefile
 	clang $(C_FLAGS) -I $(H_FOLDER) -c $< -o $@
 
 pre_requisites: $(FOLDER_LIST) $(H_PATHS) $(C_PATHS)
-	@touch pre_requisites
 
 $(FOLDER_LIST):
 	mkdir $@
